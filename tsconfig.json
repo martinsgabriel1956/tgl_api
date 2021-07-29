@@ -27,7 +27,11 @@
     },
     "types": [
       "@adonisjs/core",
-      "@adonisjs/repl"
+      "@adonisjs/repl",
+      "@adonisjs/view",
+      "@adonisjs/lucid",
+      "@adonisjs/auth",
+      "@adonisjs/mail"
     ]
   }
 }
