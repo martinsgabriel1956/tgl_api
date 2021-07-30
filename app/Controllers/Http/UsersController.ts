@@ -5,12 +5,12 @@ import UserValidator from "App/Validators/UserValidator";
 export default class UsersController {
   public async index({ request }: HttpContextContract) {
     const { page } = request.qs();
-
-    const users = await User.query().paginate(page, 10);
-
+    
+    const users = await User.query().offset(10 * (page - 1)).limit(10)
+    
     return users;
   }
-
+  
   public async store({ request }: HttpContextContract) {
     await request.validate(UserValidator);
     const { name, email, password } = request.only([
@@ -26,21 +26,24 @@ export default class UsersController {
     });
   }
   
-  public async show({ request, response }: HttpContextContract) {
-    const { id } = request.only(["id"]);
-    
-    const user = await User.find(id);
-    
-    response.json(user);
+  public async show({ params, response }: HttpContextContract) {
+    try {
+      const user = await User.findByOrFail("id", params.id);
+
+      return user;
+    } catch (err) {
+      return response.badRequest(err.message);
+    }
   }
-  
-  public async update({response, request, auth}: HttpContextContract) {
+
+  public async update({ response, request, params }: HttpContextContract) {
     try {
       const data = await request.validate(UserValidator);
-      const user = await User.findByOrFail("id", auth?.user!.id);
-
-      return await user.merge(data).save();
+      const user = await User.findByOrFail("id", params.id);
       
+      await user.merge(data).save();
+
+      return user;
     } catch (e) {
       return response.badRequest(e.message);
     }
@@ -48,8 +51,7 @@ export default class UsersController {
 
   public async delete({ params, response }: HttpContextContract) {
     try {
-      const { id } = params;
-      const user = await User.findByOrFail("id", id);
+      const user = await User.findByOrFail("id", params.id);
 
       return await user.delete();
     } catch (e) {
