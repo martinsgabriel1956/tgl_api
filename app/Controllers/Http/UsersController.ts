@@ -26,9 +26,9 @@ export default class UsersController {
     });
   }
   
-  public async show({ params, response }: HttpContextContract) {
+  public async show({ auth, response }: HttpContextContract) {
     try {
-      const user = await User.findByOrFail("id", params.id);
+      const user = await User.findByOrFail("id", auth.user?.id);
 
       return user;
     } catch (err) {
