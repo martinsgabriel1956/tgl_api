@@ -22,8 +22,8 @@ export default class ForgotPasswordsController {
       await Mail.send((message) => {
         message
           .to(email)
-          .from("martins1956@adon.com", "Martins | Gabriel")
-          .subject("Password Reset")
+          .from("martinsgabriel@adon.com", "Martins | Gabriel")
+          .subject("Reset Password")
           .htmlView("emails/forgot_password", {
             email,
             token: user!.rememberMeToken,
