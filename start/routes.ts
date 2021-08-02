@@ -3,7 +3,6 @@ import Route from "@ioc:Adonis/Core/Route";
 Route.get("/user", "UsersController.show").middleware(["auth"]);
 Route.delete("/users/:id", "UsersController.delete").middleware([
   "auth",
-  "admin",
 ]);
 Route.put("/users/", "UsersController.update").middleware("auth");
 
@@ -20,7 +19,7 @@ Route.group(() => {
   Route.post("/games", "GamesController.store");
   Route.put("/games", "GamesController.update");
   Route.delete("/games", "GamesController.destroy");
-}).middleware(["auth", "admin"]);
+}).middleware(["auth"]);
 
 Route.group(() => {
   Route.resource("/bets", "BetsController").apiOnly();
