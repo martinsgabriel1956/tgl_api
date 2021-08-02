@@ -5,6 +5,7 @@ Route.delete("/users/:id", "UsersController.delete").middleware([
   "auth",
 ]);
 Route.put("/users/", "UsersController.update").middleware("auth");
+Route.get('/filter', "FilterBetsController.index").middleware('auth')
 
 Route.get("/users", "UsersController.index");
 Route.post("/users", "UsersController.store");
@@ -18,7 +19,7 @@ Route.get("/games", "GamesController.index");
 Route.group(() => {
   Route.post("/games", "GamesController.store");
   Route.put("/games/:id", "GamesController.update");
-  Route.delete("/games", "GamesController.destroy");
+  Route.delete("/games/:id", "GamesController.destroy");
 }).middleware(["auth"]);
 
 Route.group(() => {
