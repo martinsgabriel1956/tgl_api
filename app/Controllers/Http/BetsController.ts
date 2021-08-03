@@ -7,13 +7,13 @@ import BetValidator from "App/Validators/BetValidator";
 
 export default class BetsController {
   public async index({ request, auth }: HttpContextContract) {
-    const { page } = request.qs();
+    const { page, listNumbers } = request.qs();
 
     const bets = await Bet.query()
       .where("user_id", `${auth.user?.id}`)
       .preload("games")
       .orderBy("id", "desc")
-      .paginate(page, 10);
+      .paginate(page, listNumbers);
 
     const betsJSON = bets.serialize();
 

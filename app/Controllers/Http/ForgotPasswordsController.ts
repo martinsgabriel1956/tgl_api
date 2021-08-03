@@ -27,7 +27,7 @@ export default class ForgotPasswordsController {
           .htmlView("emails/forgot_password", {
             email,
             token: user!.rememberMeToken,
-            link: 'http://tgl.com/recover_password'
+            link: 'http://localhost:3000/recovery'
           });
       });
     } catch (e) {

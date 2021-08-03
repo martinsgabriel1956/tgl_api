@@ -30,6 +30,7 @@ export default class UsersController {
           .subject('Welcome To TGL')
           .htmlView('emails/welcome', {
             name: user!.name,
+            link: 'http://localhost:3000/dashboard'
           })
       })
 
