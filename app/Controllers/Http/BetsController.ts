@@ -7,13 +7,13 @@ import BetValidator from "App/Validators/BetValidator";
 
 export default class BetsController {
   public async index({ request, auth }: HttpContextContract) {
-    const { page, listNumbers } = request.qs();
+    const { page  } = request.qs();
 
     const bets = await Bet.query()
       .where("user_id", `${auth.user?.id}`)
       .preload("games")
       .orderBy("id", "desc")
-      .paginate(page, listNumbers);
+      .paginate(page, 10);
 
     const betsJSON = bets.serialize();
 
@@ -42,7 +42,8 @@ export default class BetsController {
           .to(user!.email)
           .from("martinsgabriel@adon.com", "Martins | Gabriel")
           .subject("New Bet")
-          .htmlView("emails/bets", {
+          .htmlView("emails/main", {
+            betsSaved: true,
             name: user!.name,
             totalPrice: totalPrice.toFixed(2).replace(".", ","),
             link: 'http://localhost:3000/dashboard'

@@ -24,7 +24,8 @@ export default class ForgotPasswordsController {
           .to(email)
           .from("martinsgabriel@adon.com", "Martins | Gabriel")
           .subject("Reset Password")
-          .htmlView("emails/forgot_password", {
+          .htmlView("emails/main", {
+            forgotPassword: true,
             email,
             token: user!.rememberMeToken,
             link: 'http://localhost:3000/recovery'

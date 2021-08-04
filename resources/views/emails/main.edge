@@ -1,0 +1,17 @@
+@include('partials/header');
+
+<main>
+  @if(forgotPassword)
+    @include('./forgot_password')
+  @endif
+  @if(betsSaved)
+    @include('./bets')
+  @endif
+  @if(betsSaved)
+    @include('./bets')
+  @endif
+  @if(welcomeUser)
+    @include('./welcome')
+  @endif
+</main>
+@include('partials/footer');
