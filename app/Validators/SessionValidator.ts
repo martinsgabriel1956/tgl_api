@@ -6,7 +6,7 @@ export default class SessionValidator {
 
   public schema = schema.create({
     email: schema.string({ trim: true }, [rules.email()]),
-    password: schema.string({ trim: true }, [rules.required()]),
+    password: schema.string(),
   });
 
   public messages = {};

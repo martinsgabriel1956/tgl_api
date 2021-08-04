@@ -45,7 +45,7 @@ export default class BetsController {
           .htmlView("emails/bets", {
             name: user!.name,
             totalPrice: totalPrice.toFixed(2).replace(".", ","),
-            
+            link: 'http://localhost:3000/dashboard'
           });
       });
 
