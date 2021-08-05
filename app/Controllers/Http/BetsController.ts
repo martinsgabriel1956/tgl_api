@@ -42,7 +42,7 @@ export default class BetsController {
           .to(user!.email)
           .from("martinsgabriel@adon.com", "Martins | Gabriel")
           .subject("New Bet")
-          .htmlView("emails/main", {
+          .htmlView("main", {
             betsSaved: true,
             name: user!.name,
             totalPrice: totalPrice.toFixed(2).replace(".", ","),

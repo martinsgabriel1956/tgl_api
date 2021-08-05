@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
   <style>
     body {
       background-color: #F7F7F7;
@@ -24,6 +25,11 @@
       text-align: center;
     }
 
+    h2 {
+      text-align: center;
+      color: #707070;
+    }
+
     .name,
     a {
       color: #B5C401;
@@ -31,8 +37,30 @@
       text-decoration: none;
     }
 
-    .logo {
+    
+
+    .footer {
+    background-color: transparent;
+
+    padding: 1rem;
+    margin-top: 1rem;
+
+    width: 100%;
+
+    border-top: 1px solid #ebebeb;
+    bottom: 0;
+  }
+
+  .footer > p {
+    text-align: center;
+    
+    font-size: 15px;
+    color: #707070;
+  }
+
+  .logo {
       color: #707070;
+      
       font-style: italic;
       font-size: 42px;
       text-transform: uppercase;
@@ -50,19 +78,30 @@
       height: 18%;
       border-radius: 2rem;
     }
+    .create_new_password {
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-  <h1 class="logo">TGL</h1>
-
-  <h1>Bem vindo de volta, <p class="name">{{name}}</p></h1>
-
-  <h2>Suas apostas foram cadastradas!!</h2>
+  <header class="header">
+    <h1 class="logo">TGL</h1>
+  </header>
+  <main>
+    @if(forgotPassword)
+      @include('/forgot_password')
+    @endif
   
-  <p> Com o valor de: <strong>R${{ totalPrice }}</strong></p>
-
-  <h2>Acesse o link abaixo para conferi-las </h2>
-
-  <a href="{{link}}">Clique aqui</a>
+    @if(betsSaved)
+      @include('/bets')
+    @endif
+  
+    @if(welcomeUser)
+      @include('/welcome')
+    @endif
+  </main>
+  <footer class="footer">
+    <p>Copyright 2021 &copy; Luby Software </p>
+  </footer>
 </body>
 </html>

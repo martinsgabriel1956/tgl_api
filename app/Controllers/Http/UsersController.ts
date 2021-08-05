@@ -28,7 +28,7 @@ export default class UsersController {
           .to(user!.email)
           .from('martinsgabriel@adon.com', 'Martins | Gabriel')
           .subject('Welcome To TGL')
-          .htmlView('emails/main', {
+          .htmlView('main', {
             welcomeUser: true,
             name: user!.name,
             link: 'http://localhost:3000/dashboard'
